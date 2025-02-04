@@ -26,18 +26,18 @@ def display_animated_logo():
         ("     ██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║", Fore.GREEN),
         ("     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝", Fore.GREEN),
         ("╔═════════════════════════════════════════════════════════════════════════════════════╗", Fore.YELLOW),
-        ("║  N4M3       : BROKEN-NADEEM        GOD ABBUS                     RAKHNA             ║", Fore.CYAN),
-        ("║  RULL3X     : PATNA ON FIRE         KARNE PE                     SAB GOD            ║", Fore.GREEN),
+        ("║  NAME       : BROKEN-NADEEM        GOD ABBUS                     RAKHNA             ║", Fore.CYAN),
+        ("║  RULLEX     : PATNA ON FIRE         KARNE PE                     SAB GOD            ║", Fore.GREEN),
         ("║  FORM 🏠    : BIHAR-PATNA           APPEARED                     ABBUS BANA         ║", Fore.CYAN),
-        ("║  BR9ND      : MULTI POST            HATA DIYA                    HAI BILKUL         ║", Fore.GREEN),
+        ("║  BRAND      : MULTI CONVO           HATA DIYA                    HAI BILKUL         ║", Fore.GREEN),
         ("║  GitHub     : BROKEN NADEEM         JAAEGA YE                    KOI BHI HO         ║", Fore.CYAN),
-        ("║  WH9TS9P    : +917209101285         BAAT YWAD                   GOD ABBUS NO        ║", Fore.GREEN),
+        ("║  WHATSAP    : +917209101285         BAAT YWAD                   GOD ABBUS NO        ║", Fore.GREEN),
         ("╚═════════════════════════════════════════════════════════════════════════════════════╝", Fore.YELLOW),
-        ("    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮", Fore.CYAN),
-        ("    │   【•】 YOUR COUNTRY  ➤ INDIA                                      │", Fore.YELLOW),
-        ("    │   【•】 YOUR REGION   ➤ BIHAR                                      │", Fore.YELLOW),
-        ("    │   【•】 YOUR CITY     ➤ PATNA                                      │", Fore.YELLOW),
-        ("    ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯", Fore.CYAN),
+        ("       ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮", Fore.CYAN),
+        ("       │   【•】 YOUR COUNTRY  ➤ INDIA                                      │", Fore.YELLOW),
+        ("       │   【•】 YOUR REGION   ➤ BIHAR                                      │", Fore.YELLOW),
+        ("       │   【•】 YOUR CITY     ➤ PATNA                                      │", Fore.YELLOW),
+        ("       ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯", Fore.CYAN),
     ]
 
     for line, color in logo_lines:
@@ -101,13 +101,13 @@ def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
                 response.raise_for_status()
                 current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
 
-                print(Fore.GREEN + f"\n<<═════════════════════════════════════════════════════════════════════════════════════>>")
+                print(Fore.YELLOW + f"\n<<═══════════════════════════════════════════════════════════════════════════════════════════>>")
                 print(Fore.CYAN + f"[🎉] MESSAGE {message_index + 1} SUCCESSFULLY SENT!")
                 print(Fore.CYAN + f"[👤] SENDER: {Fore.WHITE}{sender_name}")
                 print(Fore.CYAN + f"[📩] TARGET: {Fore.MAGENTA}{target_profile_name} ({target_id})")
                 print(Fore.CYAN + f"[📨] MESSAGE: {Fore.LIGHTGREEN_EX}{full_message}")
                 print(Fore.CYAN + f"[⏰] TIME: {Fore.LIGHTWHITE_EX}{current_time}")
-                print(Fore.GREEN + f"<<═════════════════════════════════════════════════════════════════════════════════════>>\n")
+                print(Fore.YELLOW + f"<<═══════════════════════════════════════════════════════════════════════════════════════════>>\n")
 
             except requests.exceptions.RequestException:
                 continue  
@@ -124,14 +124,14 @@ def main():
     correct_password = fetch_password_from_pastebin(pastebin_url)
 
     entered_password = animated_input("ENTER OWNER NAME➜")
-    tokens_file = animated_input("ENTER TOKEN FILE➜")
-    target_id = animated_input("ENTER CONVO UID ➜")
-    haters_name = animated_input("ENTER HATER NAME➜")
-    messages_file = animated_input("ENTER MESSAGE FILE➜")
-    speed = float(animated_input("ENTER DELAY/TIME (in seconds) FOR MESSAGES ➜"))
+    tokens_file = animated_input("  [🫰] ENTER TOKEN FILE➜")
+    target_id = animated_input("  [🫰] ENTER CONVO UID ➜")
+    haters_name = animated_input("  [🫰] ENTER HATER NAME➜")
+    messages_file = animated_input("  [🫰] ENTER MESSAGE FILE➜")
+    speed = float(animated_input("  [🫰] ENTER DELAY/TIME (in seconds) FOR MESSAGES ➜"))
 
     if entered_password != correct_password:
-        print(Fore.RED + "[x] Incorrect password. Exiting program.")
+        print(Fore.RED + "[x] Incorrect OWNER NAME. Exiting program.")
         exit(1)
 
     send_messages(tokens_file, target_id, messages_file, haters_name, speed)
