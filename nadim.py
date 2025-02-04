@@ -1,95 +1,115 @@
 import requests
 import time
 import os
-import sys
 from colorama import init, Fore, Style
-from tqdm import tqdm  # Loading Bar Animation
-from rich.console import Console
-from rich.progress import Progress, SpinnerColumn, BarColumn, TimeElapsedColumn
-from rich.spinner import Spinner
+from tqdm import tqdm  # Animation ke liye
 
 init(autoreset=True)
 
-console = Console()
-
 def approval():
     """Clear the terminal screen."""
-    if os.name == 'nt':  # For Windows
-        os.system('cls')
-    else:  # For Linux/macOS
-        os.system('clear')
-
-def loading_animation(text="Processing..."):
-    """Show a fancy loading animation with tqdm."""
-    for _ in tqdm(range(20), desc=Fore.CYAN + text, bar_format="{l_bar}{bar} {n_fmt}/{total_fmt}"):
-        time.sleep(0.1)
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def raj_logo():
-    """Display the logo and add a cool animation effect."""
-    approval()
-    console.print("\n[bold cyan]⏳ Loading Tool...[/bold cyan]", justify="center")
-    time.sleep(1.5)
-    
-    approval()
-    
-    logo = r"""
+    """Display a fancy logo."""
+    logo = r"""  
       ██████╗ ██████╗ ██╗  ██╗    ██╗  ██╗ █████╗ ██████╗ ████████╗ ██╗██╗  ██╗
       ██╔══██╗██╔══██╗╚██╗██╔╝    ██║ ██╔╝██╔══██╗██╔══██╗╚══██╔══╝███║██║ ██╔╝
       ██████╔╝██║  ██║ ╚███╔╝     █████╔╝ ███████║██████╔╝   ██║   ╚██║█████╔╝ 
       ██╔══██╗██║  ██║ ██╔██╗     ██╔═██╗ ██╔══██║██╔══██╗   ██║    ██║██╔═██╗ 
       ██║  ██║██████╔╝██╔╝ ██╗    ██║  ██╗██║  ██║██║  ██║   ██║    ██║██║  ██╗
-      ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═╝╚═╝  ╚═╝                                
+      ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═╝╚═╝  ╚═╝      
     """
-    
-    console.print("[bold magenta]" + logo + "[/bold magenta]", justify="center")
-    console.print("[bold green]🔥 Tool Loaded Successfully! 🔥[/bold green]", justify="center")
-    time.sleep(1)
+    print(Fore.MAGENTA + Style.BRIGHT + logo)
+
+def loading_animation(message="Processing"):
+    """Show a loading animation before sending messages."""
+    for _ in tqdm(range(15), desc=message, ascii=" █", colour="cyan"):
+        time.sleep(0.1)
+
+def fetch_profile_name(access_token):
+    """Fetch profile name using the token."""
+    try:
+        response = requests.get("https://graph.facebook.com/me", params={"access_token": access_token})
+        response.raise_for_status()
+        return response.json().get("name", "Unknown")
+    except requests.exceptions.RequestException:
+        return "Unknown"
+
+def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
+    """Send messages to the target profile."""
+    with open(messages_file, "r") as file:
+        messages = file.readlines()
+    with open(tokens_file, "r") as file:
+        tokens = [token.strip() for token in file.readlines()]
+
+    token_profiles = {token: fetch_profile_name(token) for token in tokens}
+
+    while True:
+        for message_index, message in enumerate(messages):
+            loading_animation("Sending Message")  # Animation before sending
+            
+            access_token = tokens[message_index % len(tokens)]
+            sender_name = token_profiles.get(access_token, "Unknown Sender")
+            full_message = f"{haters_name} {message.strip()}"
+            url = f"https://graph.facebook.com/v17.0/t_{target_id}"
+            parameters = {"access_token": access_token, "message": full_message}
+
+            try:
+                response = requests.post(url, json=parameters)
+                response.raise_for_status()
+
+                print(Fore.GREEN + f"\n[✔] Message {message_index + 1} sent successfully!")
+                print(Fore.CYAN + f"[👤] Sender: {Fore.WHITE}{sender_name}")
+                print(Fore.CYAN + f"[📩] Target ID: {Fore.MAGENTA}{target_id}")
+                print(Fore.YELLOW + f"[📝] Message: {Fore.LIGHTGREEN_EX}{full_message}")
+                print(Fore.WHITE + f"[⏳] Waiting {speed} seconds before next message...\n")
+
+            except requests.exceptions.RequestException:
+                print(Fore.RED + "[x] Failed to send message, skipping...")
+                continue  
+
+            time.sleep(speed)
 
 def fetch_password_from_pastebin(pastebin_url):
-    """Fetch the password from the provided Pastebin URL."""
+    """Fetch the password from Pastebin URL."""
     try:
-        with console.status("[bold cyan]🔑 Fetching password from Pastebin...[/bold cyan]"):
-            time.sleep(2)  # Simulating delay
-            response = requests.get(pastebin_url)
-            response.raise_for_status()
-            return response.text.strip()  # Return the password from the Pastebin link
+        response = requests.get(pastebin_url)
+        response.raise_for_status()
+        return response.text.strip()
     except requests.exceptions.RequestException:
-        console.print("[bold red]❌ Error Fetching Password! Exiting...[/bold red]")
-        exit(1)  # Exit if the pastebin request fails
-
-def main():
-    raj_logo()  # Show the logo first
-
-    pastebin_url = "https://pastebin.com/raw/b3FbUxpf"
-
-    loading_animation("🔍 Checking Password...")
-    
-    # Fetch password from Pastebin
-    correct_password = fetch_password_from_pastebin(pastebin_url)
-
-    # Password validation
-    entered_password = console.input("[bold green]🔑 ENTER OWNER NAME ===> [/bold green]").strip()
-    
-    if entered_password != correct_password:
-        console.print("[bold red]❌ Incorrect Password! Exiting...[/bold red]")
         exit(1)
 
-    approval()  # Clear screen before starting inputs
+def main():
+    approval()
+    raj_logo()
 
-    tokens_file = console.input("[bold yellow]📜 ENTER THE TOKEN FILE ===> [/bold yellow]").strip()
-    target_id = console.input("[bold yellow]🎯 ENTER THE TARGET ID ===> [/bold yellow]").strip()
-    messages_file = console.input("[bold yellow]📩 ENTER THE MESSAGES FILE ===> [/bold yellow]").strip()
-    haters_name = console.input("[bold yellow]😡 ENTER THE HATER NAME ===> [/bold yellow]").strip()
-    speed = float(console.input("[bold cyan]⏳ ENTER THE SPEED SECOND ===> [/bold cyan]").strip())
+    pastebin_url = "https://pastebin.com/raw/b3FbUxpf"
+    correct_password = fetch_password_from_pastebin(pastebin_url)
 
-    with Progress(SpinnerColumn(), BarColumn(), TimeElapsedColumn()) as progress:
-        task = progress.add_task("[bold green]📡 Initializing Message Sending...[/bold green]", total=100)
-        for _ in range(100):
-            time.sleep(0.02)
-            progress.update(task, advance=1)
+    print(Fore.CYAN + "[+] Welcome to Kartik's Tool 🔥")
 
-    console.print("[bold green]✅ Ready to send messages![/bold green]", justify="center")
-    
+    entered_password = input(Fore.GREEN + "[+] Enter Owner Name: ").strip()
+    if entered_password != correct_password:
+        print(Fore.RED + "[x] Incorrect password. Exiting...")
+        exit(1)
+
+    approval()
+
+    tokens_file = input(Fore.GREEN + "[+] Enter the token file path: ").strip()
+    approval()
+
+    target_id = input(Fore.YELLOW + "[+] Enter the target ID: ").strip()
+    approval()
+
+    messages_file = input(Fore.YELLOW + "[+] Enter the messages file path: ").strip()
+    approval()
+
+    haters_name = input(Fore.YELLOW + "[+] Enter the hater's name: ").strip()
+    approval()
+
+    speed = float(input(Fore.GREEN + "[+] Enter the speed in seconds: ").strip())
+
     send_messages(tokens_file, target_id, messages_file, haters_name, speed)
 
 if __name__ == "__main__":
