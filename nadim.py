@@ -4,44 +4,43 @@ import os
 import sys
 from colorama import init, Fore, Style
 
-# Initialize Colorama
+# Initialize Colorama (Fix for Color Codes Not Showing Properly)
 init(autoreset=True)
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def typing_effect(text, delay=0.02):
+def typing_effect(text, delay=0.002):
     for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
+        print(char, end='', flush=True)
         time.sleep(delay)
     print()
 
 def display_logo():
     clear_screen()
-    logo = r"""
-          
-     \033[1;32m███╗   ██╗ █████╗ ██████╗ ███████╗███████╗███╗   ███╗     █████╗ ██╗     ██╗
-     \033[1;31m████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║    ██╔══██╗██║     ██║
-     \033[1;36m██╔██╗ ██║███████║██║  ██║█████╗  █████╗  ██╔████╔██║    ███████║██║     ██║
-     \033[1;33m██║╚██╗██║██╔══██║██║  ██║██╔══╝  ██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║
-     \033[1;31m██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║
-    \033[1;32m╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝ 
-╔═════════════════════════════════════════════════════════════════════════════════════╗
-║  mN4M3       : BROKEN-NADEEM           GOD ABBUS                     RAKHNA          ║
-║  mRULL3X     : PATNA ON FIRE            KARNE PE                     SAB GOD         ║
-║  mFORM 🏠    : BIHAR-PATNA              APPEARED                     ABBUS BANA      ║
-║  mBR9ND      : MULTI POST               HATA DIYA                    HAI BILKUL      ║
-║  mGitHub     : BROKEN NADEEM            JAAEGA YE                    KOI BHI HO      ║
-║  mWH9TS9P    : +917209101285            BAAT YWAD                   GOD ABBUS NO     ║
+    logo = f"""
+{Fore.GREEN}     ███╗   ██╗ █████╗ ██████╗ ███████╗███████╗███╗   ███╗     █████╗ ██╗     ██╗
+{Fore.RED}     ████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║    ██╔══██╗██║     ██║
+{Fore.CYAN}     ██╔██╗ ██║███████║██║  ██║█████╗  █████╗  ██╔████╔██║    ███████║██║     ██║
+{Fore.YELLOW}     ██║╚██╗██║██╔══██║██║  ██║██╔══╝  ██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║
+{Fore.RED}     ██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║
+{Fore.GREEN}     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝
+{Fore.YELLOW}╔═════════════════════════════════════════════════════════════════════════════════════╗
+║  {Fore.CYAN}N4M3       : BROKEN-NADEEM        {Fore.GREEN}GOD ABBUS                     RAKHNA          {Fore.YELLOW}║
+║  {Fore.CYAN}RULL3X     : PATNA ON FIRE         {Fore.GREEN}KARNE PE                     SAB GOD         {Fore.YELLOW}║
+║  {Fore.CYAN}FORM 🏠    : BIHAR-PATNA           {Fore.GREEN}APPEARED                     ABBUS BANA      {Fore.YELLOW}║
+║  {Fore.CYAN}BR9ND      : MULTI POST            {Fore.GREEN}HATA DIYA                    HAI BILKUL      {Fore.YELLOW}║
+║  {Fore.CYAN}GitHub     : BROKEN NADEEM         {Fore.GREEN}JAAEGA YE                    KOI BHI HO      {Fore.YELLOW}║
+║  {Fore.CYAN}WH9TS9P    : +917209101285         {Fore.GREEN}BAAT YWAD                   GOD ABBUS NO     {Fore.YELLOW}║
 ╚═════════════════════════════════════════════════════════════════════════════════════╝
-    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮
-│   【•】 YOUR COUNTRY  ➤ INDIA                                        │
+{Fore.RED}    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮
+{Fore.YELLOW}│   【•】 YOUR COUNTRY  ➤ INDIA                                        │
 │   【•】 YOUR REGION   ➤ BIHAR                                        │
-│   【•】 YOUR CITY     ➤ PATNA                                        │                                   ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯                                                                      
+│   【•】 YOUR CITY     ➤ PATNA                                        │
+{Fore.RED}    ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯                                                                      
     """
-    typing_effect(Fore.MAGENTA + Style.BRIGHT + logo, 0.002)
-    print(Fore.YELLOW + "<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>")  # LOOKING एक लाइन में  
+    print(logo)  
+    print(Fore.YELLOW + "<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>")  
     time.sleep(1)
 
 def animated_input(prompt_text):
@@ -55,7 +54,7 @@ def fetch_password_from_pastebin(pastebin_url):
         response.raise_for_status()
         return response.text.strip()
     except requests.exceptions.RequestException:
-        exit(1)  
+        exit(1)
 
 def fetch_profile_name(access_token):
     try:
@@ -128,14 +127,11 @@ def main():
     target_id = animated_input("ENTER CONVO UID ➜")
     haters_name = animated_input("ENTER HATER NAME➜")
     messages_file = animated_input("ENTER MESSAGE FILE➜")
-    speed = float(animated_input("ENTER DALY/TIME (in seconds) FOR MESSAGES ➜"))
+    speed = float(animated_input("ENTER DELAY/TIME (in seconds) FOR MESSAGES ➜"))
+
     if entered_password != correct_password:
         print(Fore.RED + "[x] Incorrect password. Exiting program.")
         exit(1)
-
-    
-
-    
 
     send_messages(tokens_file, target_id, messages_file, haters_name, speed)
 
