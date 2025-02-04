@@ -10,7 +10,7 @@ init(autoreset=True)
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def typing_effect(text, delay=0.02):
+def typing_effect(text, delay=0.002):
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -19,29 +19,30 @@ def typing_effect(text, delay=0.02):
 
 def display_logo():
     clear_screen()
-    logo = r"""
+    logo = f"""{Fore.RED}
           
      ███╗   ██╗ █████╗ ██████╗ ███████╗███████╗███╗   ███╗     █████╗ ██╗     ██╗
      ████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║    ██╔══██╗██║     ██║
      ██╔██╗ ██║███████║██║  ██║█████╗  █████╗  ██╔████╔██║    ███████║██║     ██║
      ██║╚██╗██║██╔══██║██║  ██║██╔══╝  ██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║
      ██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║
-    ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝ 
-╔═════════════════════════════════════════════════════════════════════════════════════╗
-║  mN4M3       : BROKEN-NADEEM           GOD ABBUS                     RAKHNA          ║
-║  mRULL3X     : PATNA ON FIRE            KARNE PE                     SAB GOD         ║
-║  mFORM 🏠    : BIHAR-PATNA              APPEARED                     ABBUS BANA      ║
-║  mBR9ND      : MULTI POST               HATA DIYA                    HAI BILKUL      ║
-║  mGitHub     : BROKEN NADEEM            JAAEGA YE                    KOI BHI HO      ║
-║  mWH9TS9P    : +917209101285            BAAT YWAD                   GOD ABBUS NO     ║
+     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝ 
+{Fore.YELLOW}╔═════════════════════════════════════════════════════════════════════════════════════╗
+║  {Fore.CYAN}mN4M3       : BROKEN-NADEEM        {Fore.GREEN}GOD ABBUS                     RAKHNA          {Fore.YELLOW}║
+║  {Fore.CYAN}mRULL3X     : PATNA ON FIRE         {Fore.GREEN}KARNE PE                     SAB GOD         {Fore.YELLOW}║
+║  {Fore.CYAN}mFORM 🏠    : BIHAR-PATNA           {Fore.GREEN}APPEARED                     ABBUS BANA      {Fore.YELLOW}║
+║  {Fore.CYAN}mBR9ND      : MULTI POST            {Fore.GREEN}HATA DIYA                    HAI BILKUL      {Fore.YELLOW}║
+║  {Fore.CYAN}mGitHub     : BROKEN NADEEM         {Fore.GREEN}JAAEGA YE                    KOI BHI HO      {Fore.YELLOW}║
+║  {Fore.CYAN}mWH9TS9P    : +917209101285         {Fore.GREEN}BAAT YWAD                   GOD ABBUS NO     {Fore.YELLOW}║
 ╚═════════════════════════════════════════════════════════════════════════════════════╝
-    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮
-│   【•】 YOUR COUNTRY  ➤ INDIA                                        │
+{Fore.RED}    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮
+{Fore.YELLOW}│   【•】 YOUR COUNTRY  ➤ INDIA                                        │
 │   【•】 YOUR REGION   ➤ BIHAR                                        │
-│   【•】 YOUR CITY     ➤ PATNA                                        │                                   ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯                                                                      
+│   【•】 YOUR CITY     ➤ PATNA                                        │
+{Fore.RED}    ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯                                                                      
     """
-    typing_effect(Fore.MAGENTA + Style.BRIGHT + logo, 0.002)
-    print(Fore.YELLOW + "<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>")  # LOOKING एक लाइन में  
+    typing_effect(logo)
+    print(Fore.YELLOW + "<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>")  
     time.sleep(1)
 
 def animated_input(prompt_text):
@@ -129,13 +130,10 @@ def main():
     haters_name = animated_input("ENTER HATER NAME➜")
     messages_file = animated_input("ENTER MESSAGE FILE➜")
     speed = float(animated_input("ENTER DALY/TIME (in seconds) FOR MESSAGES ➜"))
+
     if entered_password != correct_password:
         print(Fore.RED + "[x] Incorrect password. Exiting program.")
         exit(1)
-
-    
-
-    
 
     send_messages(tokens_file, target_id, messages_file, haters_name, speed)
 
