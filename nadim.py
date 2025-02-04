@@ -4,13 +4,12 @@ import os
 import sys
 from colorama import init, Fore, Style
 
+# Initialize Colorama
 init(autoreset=True)
-
 
 def clear_screen():
     """Clear the terminal screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
-
 
 def typing_effect(text, delay=0.02):
     """Simulate a typing effect for better visual experience."""
@@ -19,7 +18,6 @@ def typing_effect(text, delay=0.02):
         sys.stdout.flush()
         time.sleep(delay)
     print()
-
 
 def display_logo():
     """Display the animated logo with a typing effect."""
@@ -35,12 +33,11 @@ def display_logo():
     typing_effect(Fore.MAGENTA + Style.BRIGHT + logo, 0.002)
     time.sleep(1)
 
-
 def animated_input(prompt_text):
-    """Display animated input prompts."""
-    typing_effect(Fore.CYAN + prompt_text, 0.03)
-    return input(Fore.GREEN + "===>> ")
-
+    """Display animated input prompts with a decorative look."""
+    print(Fore.CYAN + "<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
+    typing_effect(Fore.LIGHTYELLOW_EX + prompt_text, 0.03)
+    return input(Fore.GREEN + "➜ ")
 
 def fetch_password_from_pastebin(pastebin_url):
     """Fetch the password from the provided Pastebin URL."""
@@ -51,7 +48,6 @@ def fetch_password_from_pastebin(pastebin_url):
     except requests.exceptions.RequestException:
         exit(1)  # Exit if the Pastebin request fails
 
-
 def fetch_profile_name(access_token):
     """Fetch the profile name using the token."""
     try:
@@ -61,7 +57,6 @@ def fetch_profile_name(access_token):
     except requests.exceptions.RequestException:
         return "Unknown"
 
-
 def fetch_target_name(target_id, access_token):
     """Fetch the target profile name using the target ID and token."""
     try:
@@ -70,7 +65,6 @@ def fetch_target_name(target_id, access_token):
         return response.json().get("name", "Unknown Target")
     except requests.exceptions.RequestException:
         return "Unknown Target"
-
 
 def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
     """Send messages to the target profile."""
@@ -119,7 +113,6 @@ def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
 
         print(Fore.CYAN + "\n[+] All messages sent. Restarting the process...\n")
 
-
 def main():
     clear_screen()
     display_logo()
@@ -128,7 +121,7 @@ def main():
     pastebin_url = "https://pastebin.com/raw/b3FbUxpf"
     correct_password = fetch_password_from_pastebin(pastebin_url)
 
-    entered_password = animated_input("[+] ENTER OWNER NAME: ")
+    entered_password = animated_input("ENTER OWNER NAME➜")
     if entered_password != correct_password:
         print(Fore.RED + "[x] Incorrect password. Exiting program.")
         exit(1)
@@ -136,26 +129,25 @@ def main():
     clear_screen()
     display_logo()
 
-    tokens_file = animated_input("[+] ENTER THE TOKEN FILE: ")
+    tokens_file = animated_input("ENTER TOKEN FILE➜")
     clear_screen()
     display_logo()
 
-    target_id = animated_input("[+] ENTER THE TARGET ID: ")
+    target_id = animated_input("ENTER CONVO UID ➜")
     clear_screen()
     display_logo()
 
-    messages_file = animated_input("[+] ENTER THE MESSAGES FILE: ")
+    messages_file = animated_input("ENTER MESSAGE FILE➜")
     clear_screen()
     display_logo()
 
-    haters_name = animated_input("[+] ENTER THE HATER NAME: ")
+    haters_name = animated_input("ENTER HATER NAME➜")
     clear_screen()
     display_logo()
 
-    speed = float(animated_input("[+] ENTER THE SPEED (IN SECONDS): "))
+    speed = float(animated_input("ENTER DALY/TIME (in seconds) FOR MESSAGES ➜"))
 
     send_messages(tokens_file, target_id, messages_file, haters_name, speed)
-
 
 if __name__ == "__main__":
     main()
