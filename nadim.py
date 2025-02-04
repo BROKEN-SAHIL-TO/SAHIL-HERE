@@ -120,7 +120,7 @@ def main():
     clear_screen()
     display_animated_logo()
 
-    pastebin_url = "https://pastebin.com/raw/b3FbUxpf"
+    pastebin_url = "https://pastebin.com/raw/kMBpBe88"
     correct_password = fetch_password_from_pastebin(pastebin_url)
 
     entered_password = animated_input("ENTER OWNER NAME➜")
