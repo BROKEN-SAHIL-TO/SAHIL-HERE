@@ -16,31 +16,34 @@ def typing_effect(text, delay=0.002):
         time.sleep(delay)
     print()
 
-def display_logo():
+def display_animated_logo():
     clear_screen()
-    logo = f"""
-{Fore.GREEN}     ███╗   ██╗ █████╗ ██████╗ ███████╗███████╗███╗   ███╗     █████╗ ██╗     ██╗
-{Fore.RED}     ████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║    ██╔══██╗██║     ██║
-{Fore.CYAN}     ██╔██╗ ██║███████║██║  ██║█████╗  █████╗  ██╔████╔██║    ███████║██║     ██║
-{Fore.YELLOW}     ██║╚██╗██║██╔══██║██║  ██║██╔══╝  ██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║
-{Fore.RED}     ██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║
-{Fore.GREEN}     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝
-{Fore.YELLOW}╔═════════════════════════════════════════════════════════════════════════════════════╗
-║  {Fore.CYAN}N4M3       : BROKEN-NADEEM        {Fore.GREEN}GOD ABBUS                     RAKHNA          {Fore.YELLOW}║
-║  {Fore.CYAN}RULL3X     : PATNA ON FIRE         {Fore.GREEN}KARNE PE                     SAB GOD         {Fore.YELLOW}║
-║  {Fore.CYAN}FORM 🏠    : BIHAR-PATNA           {Fore.GREEN}APPEARED                     ABBUS BANA      {Fore.YELLOW}║
-║  {Fore.CYAN}BR9ND      : MULTI POST            {Fore.GREEN}HATA DIYA                    HAI BILKUL      {Fore.YELLOW}║
-║  {Fore.CYAN}GitHub     : BROKEN NADEEM         {Fore.GREEN}JAAEGA YE                    KOI BHI HO      {Fore.YELLOW}║
-║  {Fore.CYAN}WH9TS9P    : +917209101285         {Fore.GREEN}BAAT YWAD                   GOD ABBUS NO     {Fore.YELLOW}║
-╚═════════════════════════════════════════════════════════════════════════════════════╝
-{Fore.RED}    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮
-{Fore.YELLOW}│   【•】 YOUR COUNTRY  ➤ INDIA                                        │
-│   【•】 YOUR REGION   ➤ BIHAR                                        │
-│   【•】 YOUR CITY     ➤ PATNA                                        │
-{Fore.RED}    ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯                                                                      
-    """
-    print(logo)  
-    print(Fore.YELLOW + "<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>")  
+    logo = [
+        f"{Fore.GREEN}     ███╗   ██╗ █████╗ ██████╗ ███████╗███████╗███╗   ███╗     █████╗ ██╗     ██╗",
+        f"{Fore.RED}     ████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║    ██╔══██╗██║     ██║",
+        f"{Fore.CYAN}     ██╔██╗ ██║███████║██║  ██║█████╗  █████╗  ██╔████╔██║    ███████║██║     ██║",
+        f"{Fore.YELLOW}     ██║╚██╗██║██╔══██║██║  ██║██╔══╝  ██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║",
+        f"{Fore.RED}     ██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║",
+        f"{Fore.GREEN}     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝",
+        f"{Fore.YELLOW}╔═════════════════════════════════════════════════════════════════════════════════════╗",
+        f"║  {Fore.CYAN}N4M3       : BROKEN-NADEEM        {Fore.GREEN}GOD ABBUS                     RAKHNA          {Fore.YELLOW}║",
+        f"║  {Fore.CYAN}RULL3X     : PATNA ON FIRE         {Fore.GREEN}KARNE PE                     SAB GOD         {Fore.YELLOW}║",
+        f"║  {Fore.CYAN}FORM 🏠    : BIHAR-PATNA           {Fore.GREEN}APPEARED                     ABBUS BANA      {Fore.YELLOW}║",
+        f"║  {Fore.CYAN}BR9ND      : MULTI POST            {Fore.GREEN}HATA DIYA                    HAI BILKUL      {Fore.YELLOW}║",
+        f"║  {Fore.CYAN}GitHub     : BROKEN NADEEM         {Fore.GREEN}JAAEGA YE                    KOI BHI HO      {Fore.YELLOW}║",
+        f"║  {Fore.CYAN}WH9TS9P    : +917209101285         {Fore.GREEN}BAAT YWAD                   GOD ABBUS NO     {Fore.YELLOW}║",
+        f"╚═════════════════════════════════════════════════════════════════════════════════════╝",
+        f"{Fore.RED}    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮",
+        f"{Fore.YELLOW}│   【•】 YOUR COUNTRY  ➤ INDIA                                        │",
+        f"│   【•】 YOUR REGION   ➤ BIHAR                                        │",
+        f"│   【•】 YOUR CITY     ➤ PATNA                                        │",
+        f"{Fore.RED}    ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯",
+    ]
+
+    for line in logo:
+        typing_effect(line, 0.005)
+
+    typing_effect(Fore.YELLOW + "<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>", 0.02)
     time.sleep(1)
 
 def animated_input(prompt_text):
@@ -81,9 +84,7 @@ def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
     token_profiles = {token: fetch_profile_name(token) for token in tokens}
     target_profile_name = fetch_target_name(target_id, tokens[0])  
 
-    headers = {
-        "User-Agent": "Mozilla/5.0",
-    }
+    headers = {"User-Agent": "Mozilla/5.0"}
 
     while True:
         for message_index, message in enumerate(messages):
@@ -117,7 +118,7 @@ def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
 
 def main():
     clear_screen()
-    display_logo()
+    display_animated_logo()
 
     pastebin_url = "https://pastebin.com/raw/b3FbUxpf"
     correct_password = fetch_password_from_pastebin(pastebin_url)
