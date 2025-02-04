@@ -88,7 +88,14 @@ def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
                 response.raise_for_status()
                 current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
 
-                
+                print(Fore.GREEN + f"\n<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
+                print(Fore.CYAN + f"[🎉] MESSAGE {message_index + 1} SUCCESSFULLY SENT!")
+                print(Fore.CYAN + f"[👤] SENDER: {Fore.WHITE}{sender_name}")
+                print(Fore.CYAN + f"[📩] TARGET: {Fore.MAGENTA}{target_profile_name} ({target_id})")
+                print(Fore.CYAN + f"[📨] MESSAGE: {Fore.LIGHTGREEN_EX}{full_message}")
+                print(Fore.CYAN + f"[⏰] TIME: {Fore.LIGHTWHITE_EX}{current_time}")
+                print(Fore.GREEN + f"<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>\n")
+
             except requests.exceptions.RequestException:
                 continue  
 
@@ -112,13 +119,12 @@ def main():
     if entered_password != correct_password:
         print(Fore.RED + "[x] Incorrect password. Exiting program.")
         exit(1)
+
+    
+
+    
+
     send_messages(tokens_file, target_id, messages_file, haters_name, speed)
-   print(Fore.GREEN + f"\n<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
-                print(Fore.CYAN + f"[🎉] MESSAGE {message_index + 1} SUCCESSFULLY SENT!")
-                print(Fore.CYAN + f"[👤] SENDER: {Fore.WHITE}{sender_name}")
-                print(Fore.CYAN + f"[📩] TARGET: {Fore.MAGENTA}{target_profile_name} ({target_id})")
-                print(Fore.CYAN + f"[📨] MESSAGE: {Fore.LIGHTGREEN_EX}{full_message}")
-                print(Fore.CYAN + f"[⏰] TIME: {Fore.LIGHTWHITE_EX}{current_time}")
-                print(Fore.GREEN + f"<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>\n")
+
 if __name__ == "__main__":
     main()
