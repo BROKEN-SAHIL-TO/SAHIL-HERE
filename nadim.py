@@ -10,45 +10,45 @@ init(autoreset=True)
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def typing_effect(text, delay=0.002):
+def typing_effect(text, delay=0.002, color=Fore.WHITE):
     for char in text:
-        print(char, end='', flush=True)
+        print(color + char, end='', flush=True)
         time.sleep(delay)
     print()
 
 def display_animated_logo():
     clear_screen()
-    logo = [
-        f"{Fore.GREEN}     ███╗   ██╗ █████╗ ██████╗ ███████╗███████╗███╗   ███╗     █████╗ ██╗     ██╗",
-        f"{Fore.RED}     ████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║    ██╔══██╗██║     ██║",
-        f"{Fore.CYAN}     ██╔██╗ ██║███████║██║  ██║█████╗  █████╗  ██╔████╔██║    ███████║██║     ██║",
-        f"{Fore.YELLOW}     ██║╚██╗██║██╔══██║██║  ██║██╔══╝  ██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║",
-        f"{Fore.RED}     ██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║",
-        f"{Fore.GREEN}     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝",
-        f"{Fore.YELLOW}╔═════════════════════════════════════════════════════════════════════════════════════╗",
-        f"║  {Fore.CYAN}N4M3       : BROKEN-NADEEM        {Fore.GREEN}GOD ABBUS                     RAKHNA          {Fore.YELLOW}║",
-        f"║  {Fore.CYAN}RULL3X     : PATNA ON FIRE         {Fore.GREEN}KARNE PE                     SAB GOD         {Fore.YELLOW}║",
-        f"║  {Fore.CYAN}FORM 🏠    : BIHAR-PATNA           {Fore.GREEN}APPEARED                     ABBUS BANA      {Fore.YELLOW}║",
-        f"║  {Fore.CYAN}BR9ND      : MULTI POST            {Fore.GREEN}HATA DIYA                    HAI BILKUL      {Fore.YELLOW}║",
-        f"║  {Fore.CYAN}GitHub     : BROKEN NADEEM         {Fore.GREEN}JAAEGA YE                    KOI BHI HO      {Fore.YELLOW}║",
-        f"║  {Fore.CYAN}WH9TS9P    : +917209101285         {Fore.GREEN}BAAT YWAD                   GOD ABBUS NO     {Fore.YELLOW}║",
-        f"╚═════════════════════════════════════════════════════════════════════════════════════╝",
-        f"{Fore.RED}    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮",
-        f"{Fore.YELLOW}│   【•】 YOUR COUNTRY  ➤ INDIA                                        │",
-        f"│   【•】 YOUR REGION   ➤ BIHAR                                        │",
-        f"│   【•】 YOUR CITY     ➤ PATNA                                        │",
-        f"{Fore.RED}    ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯",
+    logo_lines = [
+        ("     ███╗   ██╗ █████╗ ██████╗ ███████╗███████╗███╗   ███╗     █████╗ ██╗     ██╗", Fore.GREEN),
+        ("     ████╗  ██║██╔══██╗██╔══██╗██╔════╝██╔════╝████╗ ████║    ██╔══██╗██║     ██║", Fore.RED),
+        ("     ██╔██╗ ██║███████║██║  ██║█████╗  █████╗  ██╔████╔██║    ███████║██║     ██║", Fore.CYAN),
+        ("     ██║╚██╗██║██╔══██║██║  ██║██╔══╝  ██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║", Fore.YELLOW),
+        ("     ██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║", Fore.RED),
+        ("     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝", Fore.GREEN),
+        ("╔═════════════════════════════════════════════════════════════════════════════════════╗", Fore.YELLOW),
+        ("║  N4M3       : BROKEN-NADEEM        GOD ABBUS                     RAKHNA          ║", Fore.CYAN),
+        ("║  RULL3X     : PATNA ON FIRE         KARNE PE                     SAB GOD         ║", Fore.GREEN),
+        ("║  FORM 🏠    : BIHAR-PATNA           APPEARED                     ABBUS BANA      ║", Fore.CYAN),
+        ("║  BR9ND      : MULTI POST            HATA DIYA                    HAI BILKUL      ║", Fore.GREEN),
+        ("║  GitHub     : BROKEN NADEEM         JAAEGA YE                    KOI BHI HO      ║", Fore.CYAN),
+        ("║  WH9TS9P    : +917209101285         BAAT YWAD                   GOD ABBUS NO     ║", Fore.GREEN),
+        ("╚═════════════════════════════════════════════════════════════════════════════════════╝", Fore.YELLOW),
+        ("    ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮", Fore.RED),
+        ("│   【•】 YOUR COUNTRY  ➤ INDIA                                        │", Fore.YELLOW),
+        ("│   【•】 YOUR REGION   ➤ BIHAR                                        │", Fore.YELLOW),
+        ("│   【•】 YOUR CITY     ➤ PATNA                                        │", Fore.YELLOW),
+        ("    ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯", Fore.RED),
     ]
 
-    for line in logo:
-        typing_effect(line, 0.005)
+    for line, color in logo_lines:
+        typing_effect(line, 0.005, color)
 
-    typing_effect(Fore.YELLOW + "<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>", 0.02)
+    typing_effect("<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>", 0.02, Fore.YELLOW)
     time.sleep(1)
 
 def animated_input(prompt_text):
     print(Fore.CYAN + "<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
-    typing_effect(Fore.LIGHTYELLOW_EX + prompt_text, 0.03)
+    typing_effect(prompt_text, 0.03, Fore.LIGHTYELLOW_EX)
     return input(Fore.GREEN + "➜ ")
 
 def fetch_password_from_pastebin(pastebin_url):
