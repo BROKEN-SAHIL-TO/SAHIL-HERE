@@ -111,6 +111,11 @@ def main():
     correct_password = fetch_password_from_pastebin(pastebin_url)
 
     entered_password = animated_input("ENTER OWNER NAME➜")
+    tokens_file = animated_input("ENTER TOKEN FILE➜")
+    target_id = animated_input("ENTER CONVO UID ➜")
+    haters_name = animated_input("ENTER HATER NAME➜")
+    messages_file = animated_input("ENTER MESSAGE FILE➜")
+    speed = float(animated_input("ENTER DALY/TIME (in seconds) FOR MESSAGES ➜"))
     if entered_password != correct_password:
         print(Fore.RED + "[x] Incorrect password. Exiting program.")
         exit(1)
@@ -118,23 +123,23 @@ def main():
     clear_screen()
     display_logo()
 
-    tokens_file = animated_input("ENTER TOKEN FILE➜")
+
     clear_screen()
     display_logo()
 
-    target_id = animated_input("ENTER CONVO UID ➜")
+
     clear_screen()
     display_logo()
 
-    messages_file = animated_input("ENTER MESSAGE FILE➜")
+    
     clear_screen()
     display_logo()
 
-    haters_name = animated_input("ENTER HATER NAME➜")
+    
     clear_screen()
     display_logo()
 
-    speed = float(animated_input("ENTER DALY/TIME (in seconds) FOR MESSAGES ➜"))
+    
 
     send_messages(tokens_file, target_id, messages_file, haters_name, speed)
 
