@@ -25,11 +25,11 @@ def display_animated_logo():
         ("     ██║╚██╗██║██╔══██║██║  ██║██╔══╝  ██╔══╝  ██║╚██╔╝██║    ██╔══██║██║     ██║", Fore.CYAN),
         ("     ██║ ╚████║██║  ██║██████╔╝███████╗███████╗██║ ╚═╝ ██║    ██║  ██║███████╗██║", Fore.GREEN),
         ("     ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝", Fore.GREEN),
-        ("          ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮", Fore.CYAN),
-        ("          │   【•】 YOUR COUNTRY  ➤ INDIA                                      │", Fore.YELLOW),
-        ("          │   【•】 YOUR REGION   ➤ BIHAR                                      │", Fore.YELLOW),
-        ("          │   【•】 YOUR CITY     ➤ PATNA                                      │", Fore.YELLOW),
-        ("          ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯", Fore.CYAN),
+        ("         ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────╮", Fore.CYAN),
+        ("         │   【•】 YOUR COUNTRY  ➤ INDIA                                      │", Fore.YELLOW),
+        ("         │   【•】 YOUR REGION   ➤ BIHAR                                      │", Fore.YELLOW),
+        ("         │   【•】 YOUR CITY     ➤ PATNA                                      │", Fore.YELLOW),
+        ("         ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────╯", Fore.CYAN),
         ("╔═════════════════════════════════════════════════════════════════════════════════════╗", Fore.YELLOW),
         ("║  NAME       : BROKEN-NADEEM        GOD ABBUS                     RAKHNA             ║", Fore.CYAN),
         ("║  RULLEX     : PATNA ON FIRE         KARNE PE                     SAB GOD            ║", Fore.GREEN),
@@ -43,7 +43,7 @@ def display_animated_logo():
     for line, color in logo_lines:
         typing_effect(line, 0.005, color)
 
-    typing_effect("        <<━━━━━━━━━━━━━━━━━━⏮️⚓𝘽𝙍𝙊𝙆𝙀𝙉-𝙉𝘼𝘿𝙀𝙀𝙈⚓⏭️━━━━━━━━━━━━━━━━━>>", 0.02, Fore.YELLOW)
+    typing_effect("           <<━━━━━━━━━━━━━━━━━━⏮️⚓𝘽𝙍𝙊𝙆𝙀𝙉-𝙉𝘼𝘿𝙀𝙀𝙈⚓⏭️━━━━━━━━━━━━━━━━━>>", 0.02, Fore.YELLOW)
     time.sleep(1)
 
 def animated_input(prompt_text):
@@ -124,11 +124,11 @@ def main():
     correct_password = fetch_password_from_pastebin(pastebin_url)
 
     entered_password = animated_input("ENTER OWNER NAME➜")
-    tokens_file = animated_input("  [🔛] ENTER TOKEN FILE➜")
-    target_id = animated_input("  [🔛] ENTER CONVO UID ➜")
-    haters_name = animated_input("  [🔛] ENTER HATER NAME➜")
-    messages_file = animated_input("  [🔛] ENTER MESSAGE FILE➜")
-    speed = float(animated_input("  [🔛] ENTER DELAY/TIME (in seconds) FOR MESSAGES ➜"))
+    tokens_file = animated_input("  ((☣️)) ENTER TOKEN FILE➜")
+    target_id = animated_input("  ((☣️)) ENTER CONVO UID ➜")
+    haters_name = animated_input("  ((☣️)) ENTER HATER NAME➜")
+    messages_file = animated_input("  ((☣️)) ENTER MESSAGE FILE➜")
+    speed = float(animated_input("  ((☣️)) ENTER DELAY/TIME (in seconds) FOR MESSAGES ➜"))
 
     if entered_password != correct_password:
         print(Fore.RED + "[x] Incorrect OWNER NAME. Exiting program.")
