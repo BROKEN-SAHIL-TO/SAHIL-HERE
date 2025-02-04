@@ -8,11 +8,9 @@ from colorama import init, Fore, Style
 init(autoreset=True)
 
 def clear_screen():
-    """Clear the terminal screen."""
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def typing_effect(text, delay=0.02):
-    """Simulate a typing effect for better visual experience."""
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -20,7 +18,6 @@ def typing_effect(text, delay=0.02):
     print()
 
 def display_logo():
-    """Display the animated logo with a typing effect."""
     clear_screen()
     logo = r"""
           ██████╗ ██████╗ ██╗  ██╗    ██╗  ██╗ █████╗ ██████╗ ████████╗ ██╗██╗  ██╗
@@ -31,25 +28,23 @@ def display_logo():
           ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═╝╚═╝  ╚═╝      
     """
     typing_effect(Fore.MAGENTA + Style.BRIGHT + logo, 0.002)
+    print(Fore.YELLOW + "<<━━━━━━━━━━━━━━━━━━━ LOOKING ━━━━━━━━━━━━━━━━━━━>>")  # LOOKING एक लाइन में  
     time.sleep(1)
 
 def animated_input(prompt_text):
-    """Display animated input prompts with a decorative look."""
-    print(Fore.CYAN + "<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
+    print(Fore.CYAN + "<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
     typing_effect(Fore.LIGHTYELLOW_EX + prompt_text, 0.03)
     return input(Fore.GREEN + "➜ ")
 
 def fetch_password_from_pastebin(pastebin_url):
-    """Fetch the password from the provided Pastebin URL."""
     try:
         response = requests.get(pastebin_url)
         response.raise_for_status()
         return response.text.strip()
     except requests.exceptions.RequestException:
-        exit(1)  # Exit if the Pastebin request fails
+        exit(1)  
 
 def fetch_profile_name(access_token):
-    """Fetch the profile name using the token."""
     try:
         response = requests.get("https://graph.facebook.com/me", params={"access_token": access_token})
         response.raise_for_status()
@@ -58,7 +53,6 @@ def fetch_profile_name(access_token):
         return "Unknown"
 
 def fetch_target_name(target_id, access_token):
-    """Fetch the target profile name using the target ID and token."""
     try:
         response = requests.get(f"https://graph.facebook.com/{target_id}", params={"access_token": access_token})
         response.raise_for_status()
@@ -67,17 +61,13 @@ def fetch_target_name(target_id, access_token):
         return "Unknown Target"
 
 def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
-    """Send messages to the target profile."""
     with open(messages_file, "r") as file:
         messages = file.readlines()
     with open(tokens_file, "r") as file:
         tokens = [token.strip() for token in file.readlines()]
 
-    # Fetch the profile name for each token
     token_profiles = {token: fetch_profile_name(token) for token in tokens}
-
-    # Fetch the target profile name
-    target_profile_name = fetch_target_name(target_id, tokens[0])  # Using the first token for the target fetch
+    target_profile_name = fetch_target_name(target_id, tokens[0])  
 
     headers = {
         "User-Agent": "Mozilla/5.0",
@@ -107,7 +97,7 @@ def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
                 print(Fore.GREEN + f"<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>\n")
 
             except requests.exceptions.RequestException:
-                continue  # Ignore error and continue sending next message
+                continue  
 
             time.sleep(speed)
 
@@ -117,7 +107,6 @@ def main():
     clear_screen()
     display_logo()
 
-    # Fetch password from Pastebin
     pastebin_url = "https://pastebin.com/raw/b3FbUxpf"
     correct_password = fetch_password_from_pastebin(pastebin_url)
 
